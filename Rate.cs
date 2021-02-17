@@ -117,7 +117,7 @@ namespace ExchangeRateTool
                 throw je;
             }
         }
-        public void Read()
+        public void Load()
         {
             try
             {
