@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using System.Net;
+﻿using Newtonsoft.Json;
 using System.IO;
+using System.Net;
+
 namespace ExchangeRateTool
 {
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
-    public class Rates
+    public class RatesData
     {
         public double CNY;
         public double AED;
@@ -65,47 +61,79 @@ namespace ExchangeRateTool
         public double ZAR;
     }
 
-    public class CurrentRates
+    public class RatesRaw
     {
-        public string currency;
+        public string @base;
         public string date;
         public int time_last_updated;
-        public Rates rates;
+        public RatesData rates;
     }
 
     public class ExchangeRates
     {
-        public CurrentRates currentRates;
-        static string API = "https://api.exchangerate-api.com/v4/latest/CNY";
+        public RatesRaw Rates;
         public void Update()
         {
             try
             {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(ExchangeRates.API);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(Constant.RATES_API);
                 request.Method = "GET";
                 request.Timeout = 20000;
                 HttpWebResponse res = (HttpWebResponse)request.GetResponse();
                 StreamReader stream = new StreamReader(res.GetResponseStream());
                 string json = stream.ReadToEnd();
-                this.currentRates = JsonConvert.DeserializeObject<CurrentRates>(json);
+                this.Rates = JsonConvert.DeserializeObject<RatesRaw>(json);
             }
-            catch(JsonException e)
+            catch(WebException e)
             {
-                
+                throw e;
+            }
+            catch(JsonException je)
+            {
+                throw je;
             }
         }
         public void Save()
         {
-            string path = "latestrates.json";
-            if (!File.Exists(path))
+            try
             {
-                //TODO
+                if (!File.Exists(Constant.CONFIG_PATH))
+                {
+                    //TODO
+                }
+                StreamWriter file = new StreamWriter(Constant.LATEST_RATES_PATH, false, System.Text.Encoding.UTF8);
+                string json = JsonConvert.SerializeObject(this.Rates, Formatting.Indented);
+                file.WriteLine(json);
+                file.Flush();
+                file.Close();
+
             }
-            StreamWriter file = new StreamWriter(path, false, System.Text.Encoding.UTF8);
-            string json = JsonConvert.SerializeObject(this.currentRates, Formatting.Indented);
-            file.WriteLine(json);
-            file.Flush();
-            file.Close();
+            catch(IOException ioe)
+            {
+                throw ioe;
+            }
+            catch(JsonException je)
+            {
+                throw je;
+            }
+        }
+        public void Read()
+        {
+            try
+            {
+                StreamReader file = new StreamReader(Constant.LATEST_RATES_PATH, System.Text.Encoding.UTF8);
+                string json = file.ReadToEnd();
+                this.Rates = JsonConvert.DeserializeObject<RatesRaw>(json);
+                file.Close();
+            }
+            catch (IOException ioe)
+            {
+                throw ioe;
+            }
+            catch (JsonException je)
+            {
+                throw je;
+            }
         }
     }
 
