@@ -51,12 +51,13 @@ namespace ExchangeRateTool
             this.origin.Name = "origin";
             this.origin.Size = new System.Drawing.Size(152, 31);
             this.origin.TabIndex = 0;
+            this.origin.TextChanged += new System.EventHandler(this.origin_TextChanged);
             // 
             // Label_CNY
             // 
             this.Label_CNY.AutoSize = true;
             this.Label_CNY.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Label_CNY.Location = new System.Drawing.Point(332, 38);
+            this.Label_CNY.Location = new System.Drawing.Point(331, 35);
             this.Label_CNY.Name = "Label_CNY";
             this.Label_CNY.Size = new System.Drawing.Size(51, 25);
             this.Label_CNY.TabIndex = 1;
@@ -125,12 +126,13 @@ namespace ExchangeRateTool
             this.currency.Size = new System.Drawing.Size(102, 32);
             this.currency.Sorted = true;
             this.currency.TabIndex = 2;
+            this.currency.SelectedIndexChanged += new System.EventHandler(this.currency_SelectedIndexChanged);
             // 
             // Label_equal
             // 
             this.Label_equal.AutoSize = true;
             this.Label_equal.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Label_equal.Location = new System.Drawing.Point(278, 38);
+            this.Label_equal.Location = new System.Drawing.Point(288, 35);
             this.Label_equal.Name = "Label_equal";
             this.Label_equal.Size = new System.Drawing.Size(26, 25);
             this.Label_equal.TabIndex = 3;
@@ -140,7 +142,7 @@ namespace ExchangeRateTool
             // 
             this.cny.AutoSize = true;
             this.cny.Font = new System.Drawing.Font("微软雅黑", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.cny.Location = new System.Drawing.Point(454, 38);
+            this.cny.Location = new System.Drawing.Point(399, 35);
             this.cny.Name = "cny";
             this.cny.Size = new System.Drawing.Size(23, 25);
             this.cny.TabIndex = 4;
@@ -148,7 +150,7 @@ namespace ExchangeRateTool
             // 
             // Update
             // 
-            this.Update.Location = new System.Drawing.Point(347, 119);
+            this.Update.Location = new System.Drawing.Point(254, 184);
             this.Update.Name = "Update";
             this.Update.Size = new System.Drawing.Size(102, 31);
             this.Update.TabIndex = 5;
@@ -163,7 +165,7 @@ namespace ExchangeRateTool
             this.status});
             this.statusStrip1.Location = new System.Drawing.Point(0, 271);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(538, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(603, 22);
             this.statusStrip1.TabIndex = 6;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -182,7 +184,7 @@ namespace ExchangeRateTool
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(538, 293);
+            this.ClientSize = new System.Drawing.Size(603, 293);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.Update);
             this.Controls.Add(this.cny);

@@ -7,58 +7,58 @@ namespace ExchangeRateTool
     // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse); 
     public class RatesData
     {
-        public double CNY;
-        public double AED;
-        public double ARS;
-        public double AUD;
-        public double BGN;
-        public double BRL;
-        public double BSD;
-        public double CAD;
-        public double CHF;
-        public double CLP;
-        public double COP;
-        public double CZK;
-        public double DKK;
-        public double DOP;
-        public double EGP;
-        public double EUR;
-        public double FJD;
-        public double GBP;
-        public double GTQ;
-        public double HKD;
-        public double HRK;
-        public double HUF;
-        public double IDR;
-        public double ILS;
-        public double INR;
-        public double ISK;
-        public double JPY;
-        public double KRW;
-        public double KZT;
-        public double MVR;
-        public double MXN;
-        public double MYR;
-        public double NOK;
-        public double NZD;
-        public double PAB;
-        public double PEN;
-        public double PHP;
-        public double PKR;
-        public double PLN;
-        public double PYG;
-        public double RON;
-        public double RUB;
-        public double SAR;
-        public double SEK;
-        public double SGD;
-        public double THB;
-        public double TRY;
-        public double TWD;
-        public double UAH;
-        public double USD;
-        public double UYU;
-        public double ZAR;
+        public double CNY { get; set; }
+        public double AED { get; set; }
+        public double ARS { get; set; }
+        public double AUD { get; set; }
+        public double BGN { get; set; }
+        public double BRL { get; set; }
+        public double BSD { get; set; }
+        public double CAD { get; set; }
+        public double CHF { get; set; }
+        public double CLP { get; set; }
+        public double COP { get; set; }
+        public double CZK { get; set; }
+        public double DKK { get; set; }
+        public double DOP { get; set; }
+        public double EGP { get; set; }
+        public double EUR { get; set; }
+        public double FJD { get; set; }
+        public double GBP { get; set; }
+        public double GTQ { get; set; }
+        public double HKD { get; set; }
+        public double HRK { get; set; }
+        public double HUF { get; set; }
+        public double IDR { get; set; }
+        public double ILS { get; set; }
+        public double INR { get; set; }
+        public double ISK { get; set; }
+        public double JPY { get; set; }
+        public double KRW { get; set; }
+        public double KZT { get; set; }
+        public double MVR { get; set; }
+        public double MXN { get; set; }
+        public double MYR { get; set; }
+        public double NOK { get; set; }
+        public double NZD { get; set; }
+        public double PAB { get; set; }
+        public double PEN { get; set; }
+        public double PHP { get; set; }
+        public double PKR { get; set; }
+        public double PLN { get; set; }
+        public double PYG { get; set; }
+        public double RON { get; set; }
+        public double RUB { get; set; }
+        public double SAR { get; set; }
+        public double SEK { get; set; }
+        public double SGD { get; set; }
+        public double THB { get; set; }
+        public double TRY { get; set; }
+        public double TWD { get; set; }
+        public double UAH { get; set; }
+        public double USD { get; set; }
+        public double UYU { get; set; }
+        public double ZAR { get; set; }
     }
 
     public class RatesRaw
@@ -84,11 +84,11 @@ namespace ExchangeRateTool
                 string json = stream.ReadToEnd();
                 this.Rates = JsonConvert.DeserializeObject<RatesRaw>(json);
             }
-            catch(WebException e)
+            catch (WebException e)
             {
                 throw e;
             }
-            catch(JsonException je)
+            catch (JsonException je)
             {
                 throw je;
             }
@@ -97,10 +97,6 @@ namespace ExchangeRateTool
         {
             try
             {
-                if (!File.Exists(Constant.CONFIG_PATH))
-                {
-                    //TODO
-                }
                 StreamWriter file = new StreamWriter(Constant.LATEST_RATES_PATH, false, System.Text.Encoding.UTF8);
                 string json = JsonConvert.SerializeObject(this.Rates, Formatting.Indented);
                 file.WriteLine(json);
@@ -108,11 +104,11 @@ namespace ExchangeRateTool
                 file.Close();
 
             }
-            catch(IOException ioe)
+            catch (IOException ioe)
             {
                 throw ioe;
             }
-            catch(JsonException je)
+            catch (JsonException je)
             {
                 throw je;
             }
