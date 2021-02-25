@@ -23,7 +23,7 @@ namespace ExchangeRateTool
 
         private void Update_Click(object sender, EventArgs e)
         {
-
+            this.notification.ShowBalloonTip(0, "lalala", "lalds", ToolTipIcon.Info);
         }
 
         private void MainForm_Shown(object sender, EventArgs e)

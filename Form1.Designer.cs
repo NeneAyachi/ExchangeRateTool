@@ -29,6 +29,7 @@ namespace ExchangeRateTool
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.origin = new System.Windows.Forms.TextBox();
             this.Label_CNY = new System.Windows.Forms.Label();
@@ -38,6 +39,7 @@ namespace ExchangeRateTool
             this.Update = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
+            this.notification = new System.Windows.Forms.NotifyIcon(this.components);
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -170,6 +172,11 @@ namespace ExchangeRateTool
             this.status.Name = "status";
             this.status.Size = new System.Drawing.Size(0, 16);
             // 
+            // notification
+            // 
+            this.notification.Icon = ((System.Drawing.Icon)(resources.GetObject("notification.Icon")));
+            this.notification.Visible = true;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -207,6 +214,7 @@ namespace ExchangeRateTool
         private System.Windows.Forms.Button Update;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel status;
+        private System.Windows.Forms.NotifyIcon notification;
     }
 }
 
