@@ -87,6 +87,7 @@ namespace ExchangeRateTool
                     this.status.Text = "就绪";
                 }));
             }));
+
             thread_load.IsBackground = true;
             thread_load.Start();
 
